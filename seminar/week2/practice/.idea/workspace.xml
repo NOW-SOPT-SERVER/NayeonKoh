@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="aaad0a5e-c5a4-4fea-bfdf-401d2263d80d" name="Changes" comment="################&#10;# &lt;타입&gt; : &lt;제목&gt; 의 형식으로 제목을 아래 공백줄에 작성&#10;# 제목은 50자 이내 / 변경사항이 &quot;무엇&quot;인지 명확히 작성 / 끝에 마침표 금지&#10;# 예) feat : 로그인 기능 추가&#10;&#10;# 바로 아래 공백은 지우지 마세요 (제목과 본문의 분리를 위함)&#10;&#10;################&#10;# 본문(구체적인 내용)을 아랫줄에 작성&#10;# 여러 줄의 메시지를 작성할 땐 &quot;-&quot;로 구분 (한 줄은 72자 이내)&#10;&#10;################&#10;# 꼬릿말(footer)을 아랫줄에 작성 (현재 커밋과 관련된 이슈 번호 추가 등)&#10;# 예) Close #7&#10;&#10;################&#10;# feat : 새로운 기능 추가&#10;# fix : 버그 수정&#10;# docs : 문서 수정&#10;# test : 테스트 코드 추가&#10;# refact : 코드 리팩토링&#10;# style : 코드 의미에 영향을 주지 않는 변경사항&#10;# chore : 빌드 부분 혹은 패키지 매니저 수정사항&#10;################">
+      <change afterPath="$PROJECT_DIR$/../../week2/practice/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/vcs.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Record" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;nykoh2001&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/NOW-SOPT-SERVER/NayeonKoh.git&quot;,
+    &quot;accountId&quot;: &quot;a3ce1cb5-a0d1-4518-9a17-9fad581c47ee&quot;
+  }
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2eOjId1pU0kcQ0guPiLOiVZl3O2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ACTIVE_CLOUD_PROJECT_ACCOUNT": "nykoh2001@gmail.com",
+    "ACTIVE_CLOUD_PROJECT_ID": "gae-sanchaek",
+    "ACTIVE_CLOUD_PROJECT_NAME": "gae-sanchaek",
+    "ACTIVE_CLOUD_PROJECT_NUMBER": "394210874319",
+    "Gradle.CreateMember.createMemberSuccess.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.google.cloudcode.ide_session_index": "20240406_0005",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "inlay.hints",
+    "spring.configuration.checksum": "a2de6a911d0b4e7fee38f04812b4bc75",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Gradle.CreateMember.createMemberSuccess">
+    <configuration name="CreateMember.createMemberSuccess" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.sopt.practice.controller.MemberControllerTest$CreateMember.createMemberSuccess&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="PracticeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="practice.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.sopt.practice.PracticeApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.CreateMember.createMemberSuccess" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aaad0a5e-c5a4-4fea-bfdf-401d2263d80d" name="Changes" comment="" />
+      <created>1711782439397</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711782439397</updated>
+      <workItem from="1711782440618" duration="1494000" />
+      <workItem from="1712073553772" duration="980000" />
+      <workItem from="1712123096110" duration="599000" />
+      <workItem from="1712137573704" duration="599000" />
+      <workItem from="1712208820550" duration="240000" />
+      <workItem from="1712210478596" duration="597000" />
+      <workItem from="1712330749133" duration="563000" />
+      <workItem from="1712381659906" duration="5406000" />
+      <workItem from="1712387095553" duration="2971000" />
+      <workItem from="1712390203709" duration="56000" />
+      <workItem from="1712390273196" duration="134000" />
+      <workItem from="1712390416438" duration="1818000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/org/sopt/practice/PracticeApplicationTests.java</url>
+          <line>6</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
