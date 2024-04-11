@@ -41,7 +41,7 @@ public class Bank {
             // magic number -> 상수로 대체
             if (customerOption.contains(Constant.MENU_OPTION_1.toString())) {
                 // 계좌 생성
-                this.createAccount(customer);
+                customer.createAccount();
             } else if (customerOption.contains(Constant.MENU_OPTION_2.toString())) {
                 // 계좌 목록 조회
                 Output.printAccountList(customer);
@@ -61,13 +61,6 @@ public class Bank {
                 throw new IllegalArgumentException(ErrorMessage.ILLEGAL_USER_INPUT.getMessage());
             }
         }
-    }
-
-    private void createAccount(Customer customer) {
-        String accountNumber = Input.readAccountNumber();
-        Account account = Account.create(customer, accountNumber, 0);
-        customer.getAccounts().add(account);
-        Output.printAccountCreation(account);
     }
 
     private void transfer(Customer customer) {
