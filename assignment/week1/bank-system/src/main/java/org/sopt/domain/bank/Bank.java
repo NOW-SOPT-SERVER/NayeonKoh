@@ -19,9 +19,9 @@ public class Bank {
         Customer customer = null;
 
         // 이미 존재하는 고객인지 확인 - 항상 존재하지 않음 (DB x)
-        for (Customer _customer : customers) {
-            if (_customer.getName().equals(name)) {
-                customer = _customer;
+        for (Customer cstm : customers) {
+            if (cstm.getName().equals(name)) {
+                customer = cstm;
             }
         }
 
