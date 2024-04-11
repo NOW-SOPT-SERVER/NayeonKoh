@@ -41,62 +41,19 @@ public class Bank {
             // magic number -> 상수로 대체
             if (customerOption.contains(Constant.MENU_OPTION_1.toString())) {
                 // 계좌 생성
-                String accountNumber = Input.readAccountNumber();
-                Account account = Account.create(customer, accountNumber, 0);
-                customer.getAccounts().add(account);
-                Output.printAccountCreation(account);
+                this.createAccount(customer);
             } else if (customerOption.contains(Constant.MENU_OPTION_2.toString())) {
                 // 계좌 목록 조회
                 Output.printAccountList(customer);
             } else if (customerOption.contains(Constant.MENU_OPTION_3.toString())) {
                 // 계좌 이체
-
-                // 이체 시 돈을 출금하는 계좌 선택
-                Output.printAccountList(customer);
-                Integer selectedAccount = Input.readSelectedAccount();
-                Account currentAccount = customer.getAccounts().get(selectedAccount - 1);
-
-                // 이체하려는 계좌 번호 입력
-                String accountNumber = Input.readAccountNumberForRemittance();
-                Account targetAccount = null;
-                for (Customer _customer : this.customers) {
-                    for (Account account : _customer.getAccounts()) {
-                        // 이체하려는 계좌가 존재하는 경우
-                        if (account.getAccountNumber().equals(accountNumber)) {
-                            targetAccount = account;
-                            int amount = Input.readAmount();
-                            currentAccount.withdraw(amount);
-                            targetAccount.deposit(amount);
-
-                            Output.printBalance(currentAccount);
-                            break;
-                        }
-                    }
-                }
-                // 이체하려는 계좌가 없는 경우
-                if (targetAccount == null) {
-                    throw new IllegalArgumentException(ErrorMessage.NO_TARGET_ACCOUNT.getMessage());
-                }
+                this.transfer(customer);
             } else if (customerOption.contains(Constant.MENU_OPTION_4.toString())) {
                 // 입금
-                Integer amount = Input.readAmount();
-
-                Output.printAccountList(customer);
-                Integer selectedAccount = Input.readSelectedAccount();
-                Account currentAccount = customer.getAccounts().get(selectedAccount - 1);
-                currentAccount.deposit(amount);
-
-                Output.printBalance(currentAccount);
+                this.deposit(customer);
             } else if (customerOption.contains(Constant.MENU_OPTION_5.toString())) {
                 // 출금
-                Integer amount = Input.readAmount();
-
-                Output.printAccountList(customer);
-                Integer selectedAccount = Input.readSelectedAccount();
-                Account currentAccount = customer.getAccounts().get(selectedAccount - 1);
-                currentAccount.withdraw(amount);
-
-                Output.printBalance(currentAccount);
+                this.withdraw(customer);
             } else if (customerOption.contains(Constant.MENU_OPTION_6.toString())) {
                 // 종료
                 break;
@@ -104,5 +61,63 @@ public class Bank {
                 throw new IllegalArgumentException(ErrorMessage.ILLEGAL_USER_INPUT.getMessage());
             }
         }
+    }
+
+    private void createAccount(Customer customer) {
+        String accountNumber = Input.readAccountNumber();
+        Account account = Account.create(customer, accountNumber, 0);
+        customer.getAccounts().add(account);
+        Output.printAccountCreation(account);
+    }
+
+    private void transfer(Customer customer) {
+        // 이체 시 돈을 출금하는 계좌 선택
+        Output.printAccountList(customer);
+        Integer selectedAccount = Input.readSelectedAccount();
+        Account currentAccount = customer.getAccounts().get(selectedAccount - 1);
+
+        // 이체하려는 계좌 번호 입력
+        String accountNumber = Input.readAccountNumberForRemittance();
+        Account targetAccount = null;
+        for (Customer _customer : this.customers) {
+            for (Account account : _customer.getAccounts()) {
+                // 이체하려는 계좌가 존재하는 경우
+                if (account.getAccountNumber().equals(accountNumber)) {
+                    targetAccount = account;
+                    int amount = Input.readAmount();
+                    currentAccount.withdraw(amount);
+                    targetAccount.deposit(amount);
+
+                    Output.printBalance(currentAccount);
+                    break;
+                }
+            }
+        }
+        // 이체하려는 계좌가 없는 경우
+        if (targetAccount == null) {
+            throw new IllegalArgumentException(ErrorMessage.NO_TARGET_ACCOUNT.getMessage());
+        }
+    }
+
+    private void deposit(Customer customer) {
+        Integer amount = Input.readAmount();
+
+        Output.printAccountList(customer);
+        Integer selectedAccount = Input.readSelectedAccount();
+        Account currentAccount = customer.getAccounts().get(selectedAccount - 1);
+        currentAccount.deposit(amount);
+
+        Output.printBalance(currentAccount);
+    }
+
+    private void withdraw(Customer customer) {
+        Integer amount = Input.readAmount();
+
+        Output.printAccountList(customer);
+        Integer selectedAccount = Input.readSelectedAccount();
+        Account currentAccount = customer.getAccounts().get(selectedAccount - 1);
+        currentAccount.withdraw(amount);
+
+        Output.printBalance(currentAccount);
     }
 }
