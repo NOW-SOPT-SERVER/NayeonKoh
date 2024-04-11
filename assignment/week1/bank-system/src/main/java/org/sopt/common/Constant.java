@@ -12,7 +12,7 @@ public enum Constant {
     MENU_OPTION_6(6),
     ;
 
-    private int value;
+    private final int value;
     private Constant(int value) {
         this.value = value;
     }
