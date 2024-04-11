@@ -2,6 +2,7 @@ package org.sopt.domain.bank;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import org.sopt.common.ErrorMessage;
 import org.sopt.domain.account.Account;
 import org.sopt.domain.customer.Customer;
@@ -26,7 +27,8 @@ public class Bank {
         }
 
         // 고객 생성 및 저장
-        if (customer == null) { // 항상 true
+        // 한 번만 검사되는 조건문 -> 성능보다는 가독성을 고려하여 isNull로 대체
+        if (Objects.isNull(customer)) { // 항상 true
             customer = new Customer(name);
             customers.add(customer);
         }
