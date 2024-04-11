@@ -3,6 +3,7 @@ package org.sopt.domain.bank;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import org.sopt.common.Constant;
 import org.sopt.common.ErrorMessage;
 import org.sopt.domain.account.Account;
 import org.sopt.domain.customer.Customer;
@@ -20,7 +21,7 @@ public class Bank {
         Customer customer = null;
 
         // 이미 존재하는 고객인지 확인 - 항상 존재하지 않음 (DB x)
-        for (Customer cstm : customers) {
+        for (Customer cstm : this.customers) {
             if (cstm.getName().equals(name)) {
                 customer = cstm;
             }
@@ -30,22 +31,24 @@ public class Bank {
         // 한 번만 검사되는 조건문 -> 성능보다는 가독성을 고려하여 isNull로 대체
         if (Objects.isNull(customer)) { // 항상 true
             customer = new Customer(name);
-            customers.add(customer);
+            this.customers.add(customer);
         }
 
         while (true) {
             // 사용자로부터 이용하려는 서비스 입력
             String customerOption = Input.readSelectedMenu();
-            if (customerOption.contains("1")) {
+
+            // magic number -> 상수로 대체
+            if (customerOption.contains(Constant.MENU_OPTION_1.toString())) {
                 // 계좌 생성
                 String accountNumber = Input.readAccountNumber();
                 Account account = Account.create(customer, accountNumber, 0);
                 customer.getAccounts().add(account);
                 Output.printAccountCreation(account);
-            } else if (customerOption.contains("2")) {
+            } else if (customerOption.contains(Constant.MENU_OPTION_2.toString())) {
                 // 계좌 목록 조회
                 Output.printAccountList(customer);
-            } else if (customerOption.contains("3")) {
+            } else if (customerOption.contains(Constant.MENU_OPTION_3.toString())) {
                 // 계좌 이체
 
                 // 이체 시 돈을 출금하는 계좌 선택
@@ -56,7 +59,7 @@ public class Bank {
                 // 이체하려는 계좌 번호 입력
                 String accountNumber = Input.readAccountNumberForRemittance();
                 Account targetAccount = null;
-                for (Customer _customer : customers) {
+                for (Customer _customer : this.customers) {
                     for (Account account : _customer.getAccounts()) {
                         // 이체하려는 계좌가 존재하는 경우
                         if (account.getAccountNumber().equals(accountNumber)) {
@@ -74,7 +77,7 @@ public class Bank {
                 if (targetAccount == null) {
                     throw new IllegalArgumentException(ErrorMessage.NO_TARGET_ACCOUNT.getMessage());
                 }
-            } else if (customerOption.contains("4")) {
+            } else if (customerOption.contains(Constant.MENU_OPTION_4.toString())) {
                 // 입금
                 Integer amount = Input.readAmount();
 
@@ -84,7 +87,7 @@ public class Bank {
                 currentAccount.deposit(amount);
 
                 Output.printBalance(currentAccount);
-            } else if (customerOption.contains("5")) {
+            } else if (customerOption.contains(Constant.MENU_OPTION_5.toString())) {
                 // 출금
                 Integer amount = Input.readAmount();
 
@@ -94,7 +97,7 @@ public class Bank {
                 currentAccount.withdraw(amount);
 
                 Output.printBalance(currentAccount);
-            } else if (customerOption.contains("6")) {
+            } else if (customerOption.contains(Constant.MENU_OPTION_6.toString())) {
                 // 종료
                 break;
             } else {
