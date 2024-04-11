@@ -31,27 +31,15 @@ public class Account {
 
     public void deposit(final int amount) {
         // 입금
-        if (amount < Constant.ZERO.value()) {
-            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_AMOUNT.getMessage());
-        }
-        if (amount > Constant.MAX_INT.value()) {
-            throw new IllegalArgumentException(ErrorMessage.OVERFLOW_AMOUNT.getMessage());
-        }
-        balance += amount;
+        AccountValidator.validateAmountRange(amount);
+        this.balance += amount;
     }
 
     public void withdraw(final int amount) {
         // 출금
-        if (amount < Constant.ZERO.value()) {
-            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_AMOUNT.getMessage());
-        }
-        if (amount > Constant.MAX_INT.value()) {
-            throw new IllegalArgumentException(ErrorMessage.OVERFLOW_AMOUNT.getMessage());
-        }
-        if (amount > balance) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_ENOUGH_BALANCE.getMessage());
-        }
-        balance -= amount;
+        AccountValidator.validateAmountRange(amount);
+        AccountValidator.validateAmountSufficiency(amount, this.balance);
+        this.balance -= amount;
     }
 
     public Customer getAccountHolder() {
