@@ -15,11 +15,8 @@ public class Customer {
         this.accounts = accounts;
     }
 
-    public void createAccount() {
-        String accountNumber = Input.readAccountNumber();
-        Account account = Account.create(this, accountNumber, 0);
-        this.getAccounts().add(account);
-        Output.printAccountCreation(account);
+    public void addAccount(Account account) {
+        this.accounts.add(account);
     }
 
     public Customer(final String name) {
