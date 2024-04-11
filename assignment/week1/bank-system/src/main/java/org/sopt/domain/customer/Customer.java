@@ -19,10 +19,10 @@ public class Customer {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public List<Account> getAccounts() {
-        return accounts;
+        return this.accounts;
     }
 }

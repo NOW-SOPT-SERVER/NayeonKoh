@@ -55,14 +55,14 @@ public class Account {
     }
 
     public Customer getAccountHolder() {
-        return accountHolder;
+        return this.accountHolder;
     }
 
     public String getAccountNumber() {
-        return accountNumber;
+        return this.accountNumber;
     }
 
     public int getBalance() {
-        return balance;
+        return this.balance;
     }
 }
