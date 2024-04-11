@@ -8,7 +8,6 @@ public class Input {
 
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-
     public static String readCustomerName() {
         System.out.print("이름을 입력하세요: ");
         try {
@@ -17,6 +16,7 @@ public class Input {
             throw new RuntimeException(e);
         }
     }
+
     public static String readSelectedMenu() {
         System.out.println("1. 계좌 생성");
         System.out.println("2. 계좌 목록 조회");
