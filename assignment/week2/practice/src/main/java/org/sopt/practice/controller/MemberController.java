@@ -43,7 +43,7 @@ public class MemberController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity getMembers() {
         return ResponseEntity.ok(memberService.getMembers());
     }
