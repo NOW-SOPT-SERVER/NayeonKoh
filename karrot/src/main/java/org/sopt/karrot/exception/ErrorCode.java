@@ -5,6 +5,12 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 public enum ErrorCode {
+    // BAD REQUEST
+    BAD_REQUEST(40000, HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),
+
+    // ILLEGAL ARGUMENT
+    ILLEGAL_ARGUMENT(40001, HttpStatus.BAD_REQUEST, "잘못된 인자입니다."),
+
     // NOT FOUND
     NOT_FOUND(40400, HttpStatus.NOT_FOUND, "해당 리소스를 찾을 수 없습니다."),
     NOT_FOUND_MEMBER(40401, HttpStatus.NOT_FOUND, "해당 회원을 찾을 수 없습니다."),
