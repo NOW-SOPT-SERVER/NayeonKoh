@@ -8,10 +8,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.sopt.karrot.dto.request.MemberCreateDto;
 
 @Entity
 @Getter
@@ -31,4 +34,19 @@ public class Member {
 
     @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
     private List<Item> soldItems;
+
+    @Builder
+    private Member(final String name, final Double temperature, final List<Item> soldItems) {
+        this.name = name;
+        this.temperature = temperature;
+        this.soldItems = soldItems;
+    }
+
+    public static Member from(final MemberCreateDto memberCreateDto) {
+        return Member.builder()
+                .name(memberCreateDto.name())
+                .temperature(36.5)
+                .soldItems(new ArrayList<>())
+                .build();
+    }
 }
