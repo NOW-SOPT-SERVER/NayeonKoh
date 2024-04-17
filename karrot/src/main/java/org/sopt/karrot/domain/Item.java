@@ -14,6 +14,7 @@ import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.sopt.karrot.domain.type.ItemCategory;
 import org.sopt.karrot.domain.type.ItemStatus;
 import org.sopt.karrot.domain.type.TradingMethod;
 
@@ -32,6 +33,9 @@ public class Item {
     @Column(name = "trading_method", nullable = false)
     @Enumerated(EnumType.STRING)
     private TradingMethod tradingMethod;
+
+    @Column(name = "category", nullable = false)
+    private ItemCategory category;
 
     /* 가격 제안 가능 여부 */
     @Column(name = "price_suggestion", nullable = false)
