@@ -12,11 +12,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.sopt.karrot.domain.type.ItemCategory;
 import org.sopt.karrot.domain.type.ItemStatus;
 import org.sopt.karrot.domain.type.TradingMethod;
+import org.sopt.karrot.dto.request.ItemRegisterDto;
 
 @Entity
 @Getter
@@ -50,6 +52,7 @@ public class Item {
 
     /* 상품 판매 상태 */
     @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
     private ItemStatus status;
 
     /* TODO: 이후 로케이션 클래스 분리 */
@@ -59,4 +62,31 @@ public class Item {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member seller;
+
+    public static Item from(final ItemRegisterDto registerDto, final Member seller) {
+        return Item.builder()
+                .seller(seller)
+                .title(registerDto.title())
+                .tradingMethod(registerDto.tradingMethod())
+                .category(registerDto.category())
+                .priceSuggestion(registerDto.priceSuggestion())
+                .price(registerDto.price())
+                .content(registerDto.content())
+                .status(ItemStatus.SALE)
+                .location(registerDto.location())
+                .build();
+    }
+
+    @Builder
+    public Item(final String title, final TradingMethod tradingMethod, final ItemCategory category, final boolean priceSuggestion, final Integer price, final String content, final String location, final Member seller, final ItemStatus status) {
+        this.title = title;
+        this.tradingMethod = tradingMethod;
+        this.category = category;
+        this.priceSuggestion = priceSuggestion;
+        this.price = price;
+        this.content = content;
+        this.status = status;
+        this.location = location;
+        this.seller = seller;
+    }
 }
