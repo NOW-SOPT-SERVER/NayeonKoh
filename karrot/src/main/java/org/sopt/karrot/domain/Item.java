@@ -35,6 +35,7 @@ public class Item {
     private TradingMethod tradingMethod;
 
     @Column(name = "category", nullable = false)
+    @Enumerated(EnumType.STRING)
     private ItemCategory category;
 
     /* 가격 제안 가능 여부 */
