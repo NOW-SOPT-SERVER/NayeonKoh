@@ -17,10 +17,6 @@ public record ResponseDto<T>(
         return new ResponseDto<>(HttpStatus.OK, true, data, null);
     }
 
-    public static <T> ResponseDto<T> created(@Nullable final T data) {
-        return new ResponseDto<>(HttpStatus.CREATED, true, data, null);
-    }
-
     public static ResponseDto<Object> fail(final CommonException e) {
         return new ResponseDto<>(e.getErrorCode().getHttpStatus(), false, null, ExceptionDto.from(e.getErrorCode()));
     }
