@@ -1,0 +1,14 @@
+---
+name: Clone Coding Issue
+about: clone coding issue
+title: ''
+labels: karrot
+assignees: nykoh2001
+
+---
+
+## 구현 내용
+<!-- 구현하고자하는 내용에 대해 작성해주세요! -->
+
+## 태스크
+<!-- 구현할 때 해야하는 작업들의 List를 적어주세요! -->
