@@ -1,4 +1,4 @@
-package org.sopt.practice.controller.dto;
+package org.sopt.practice.service.dto;
 
 public record BlogTitleUpdateRequest(
         String title

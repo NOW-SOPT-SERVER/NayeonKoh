@@ -1,10 +1,9 @@
 package org.sopt.practice.controller;
 
-import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.sopt.practice.common.SuccessMessage;
 import org.sopt.practice.common.dto.SuccessStatusResponse;
-import org.sopt.practice.controller.dto.BlogTitleUpdateRequest;
+import org.sopt.practice.service.dto.BlogTitleUpdateRequest;
 import org.sopt.practice.service.BlogService;
 import org.sopt.practice.service.dto.BlogCreateRequest;
 import org.springframework.http.HttpStatus;
