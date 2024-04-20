@@ -1,5 +1,6 @@
 package org.sopt.practice.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.sopt.practice.common.SuccessMessage;
 import org.sopt.practice.common.dto.SuccessStatusResponse;
@@ -40,7 +41,7 @@ public class BlogController {
     @PatchMapping("/blog/{blogId}/title")
     public ResponseEntity updateBlogTitle(
             @PathVariable Long blogId,
-            @RequestBody BlogTitleUpdateRequest blogTitleUpdateRequest
+            @Valid @RequestBody BlogTitleUpdateRequest blogTitleUpdateRequest
     ) {
         blogService.updateTitle(blogId, blogTitleUpdateRequest);
         return ResponseEntity.noContent().build();
