@@ -35,6 +35,9 @@ dependencies {
 
 	// Test
 	testImplementation 'io.rest-assured:rest-assured'
+
+	// Validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
 tasks.named('test') {
