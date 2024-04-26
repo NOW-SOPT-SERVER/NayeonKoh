@@ -25,7 +25,7 @@ public class BlogController {
 
     private final BlogService blogService;
 
-    @PostMapping("/blog")
+    @PostMapping("/blogs")
     public ResponseEntity<SuccessStatusResponse> createBlog(
             @RequestHeader(name = "memberId") Long memberId, /* Path variable보다 보안 상 안전 */
             @RequestBody BlogCreateRequest blogCreateRequest
@@ -38,7 +38,7 @@ public class BlogController {
                 .body(SuccessStatusResponse.of(SuccessMessage.BLOG_CREATE_SUCCESS));
     }
 
-    @PatchMapping("/blog/{blogId}/title")
+    @PatchMapping("/blogs/{blogId}/title")
     public ResponseEntity updateBlogTitle(
             @PathVariable Long blogId,
             @Valid @RequestBody BlogTitleUpdateRequest blogTitleUpdateRequest
