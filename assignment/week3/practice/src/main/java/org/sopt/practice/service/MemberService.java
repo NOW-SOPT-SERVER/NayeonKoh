@@ -6,9 +6,9 @@ import org.sopt.practice.common.ErrorMessage;
 import org.sopt.practice.domain.Member;
 import org.sopt.practice.exception.NotFoundException;
 import org.sopt.practice.repository.MemberRepository;
-import org.sopt.practice.service.dto.MemberCreateDto;
-import org.sopt.practice.service.dto.MemberFindDto;
-import org.sopt.practice.service.dto.MembersDto;
+import org.sopt.practice.service.dto.MemberCreateRequest;
+import org.sopt.practice.service.dto.MemberFindResponse;
+import org.sopt.practice.service.dto.MemberFindAllResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,14 +19,14 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public String createMember(MemberCreateDto memberCreateDTO) {
+    public String createMember(MemberCreateRequest memberCreateDTO) {
         Member member = memberRepository.save(
                 Member.create(memberCreateDTO.name(), memberCreateDTO.part(), memberCreateDTO.age()));
         return member.getId().toString();
     }
 
-    public MemberFindDto getMemberById(final Long memberId) {
-        return MemberFindDto.of(findMemberById(memberId));
+    public MemberFindResponse getMemberById(final Long memberId) {
+        return MemberFindResponse.of(findMemberById(memberId));
     }
 
     @Transactional
@@ -35,8 +35,8 @@ public class MemberService {
         memberRepository.delete(member);
     }
 
-    public List<MembersDto> getMembers() {
-        return MembersDto.listOf(memberRepository.findAll());
+    public List<MemberFindAllResponse> getMembers() {
+        return MemberFindAllResponse.listOf(memberRepository.findAll());
     }
 
     /* private -> protected로 다른 서비스 레이어에서 호출할 수 있도록 수정 */

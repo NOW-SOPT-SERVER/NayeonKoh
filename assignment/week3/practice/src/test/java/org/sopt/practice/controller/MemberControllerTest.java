@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.sopt.practice.domain.Part;
 import org.sopt.practice.repository.MemberRepository;
 import org.sopt.practice.service.MemberService;
-import org.sopt.practice.service.dto.MemberCreateDto;
+import org.sopt.practice.service.dto.MemberCreateRequest;
 import org.sopt.practice.settings.ApiTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +31,7 @@ public class MemberControllerTest extends ApiTest {
         public void createMemberSuccess() throws Exception {
             // given
             // var을 사용하는 이유: 자바의 타입 추론 -> 코드 가독성
-            final var request = new MemberCreateDto("name", Part.IOS, 20);
+            final var request = new MemberCreateRequest("name", Part.IOS, 20);
 
             // when
             final var response = RestAssured

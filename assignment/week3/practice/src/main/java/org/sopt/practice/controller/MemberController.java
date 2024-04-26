@@ -1,16 +1,14 @@
 package org.sopt.practice.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
-import java.net.URI;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.sopt.practice.common.SuccessMessage;
 import org.sopt.practice.common.dto.SuccessResponse;
 import org.sopt.practice.service.MemberService;
-import org.sopt.practice.service.dto.MemberCreateDto;
-import org.sopt.practice.service.dto.MemberFindDto;
-import org.sopt.practice.service.dto.MembersDto;
-import org.springframework.http.ResponseEntity;
+import org.sopt.practice.service.dto.MemberCreateRequest;
+import org.sopt.practice.service.dto.MemberFindResponse;
+import org.sopt.practice.service.dto.MemberFindAllResponse;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +26,7 @@ public class MemberController {
 
     @PostMapping
     public SuccessResponse<?> createMember(
-            @RequestBody MemberCreateDto memberCreateDTO,
+            @RequestBody MemberCreateRequest memberCreateDTO,
             HttpServletResponse response
     ) {
         String createdMemberId = memberService.createMember(memberCreateDTO);
@@ -42,7 +40,7 @@ public class MemberController {
     }
 
     @GetMapping("/{memberId}")
-    public SuccessResponse<MemberFindDto> findMemberById(
+    public SuccessResponse<MemberFindResponse> findMemberById(
             @PathVariable final Long memberId
     ) {
         return SuccessResponse.of(SuccessMessage.OK, memberService.getMemberById(memberId));
@@ -57,7 +55,7 @@ public class MemberController {
     }
 
     @GetMapping
-    public SuccessResponse<List<MembersDto>> getMembers() {
+    public SuccessResponse<List<MemberFindAllResponse>> getMembers() {
         return SuccessResponse.of(SuccessMessage.OK, memberService.getMembers());
     }
  }
