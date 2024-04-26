@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,10 +26,11 @@ public class PostController {
 
     @PostMapping("/posts")
     public SuccessResponse<?> createPost(
+            @RequestHeader(name = "memberId") final Long memberId,
             @Valid @RequestBody final PostCreateRequest postCreateRequest,
             HttpServletResponse response
     ){
-        String postId = postService.createPost(postCreateRequest);
+        String postId = postService.createPost(memberId, postCreateRequest);
 
         /* Location field -> 새로운 리소스에 대한 Uri endpoint
         * Post-ID -> 새로 생성된 post id

@@ -3,6 +3,7 @@ package org.sopt.practice.common;
 import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import org.sopt.practice.common.dto.ErrorResponse;
+import org.sopt.practice.exception.ForbiddenError;
 import org.sopt.practice.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,5 +28,12 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(ErrorResponse.of(HttpStatus.BAD_REQUEST.value(), Objects.requireNonNull(
                         e.getBindingResult().getFieldError()).getDefaultMessage()));
+    }
+
+    @ExceptionHandler(value = {ForbiddenError.class})
+    protected ResponseEntity<ErrorResponse> handleForbiddenError(final ForbiddenError e) {
+        log.error("Handle Forbidden Error: {}", e.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(ErrorResponse.of(e.getErrorMessage()));
     }
 }

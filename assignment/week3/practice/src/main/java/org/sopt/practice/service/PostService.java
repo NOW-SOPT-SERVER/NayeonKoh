@@ -1,10 +1,12 @@
 package org.sopt.practice.service;
 
 import java.util.List;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.sopt.practice.common.ErrorMessage;
 import org.sopt.practice.domain.Blog;
 import org.sopt.practice.domain.Post;
+import org.sopt.practice.exception.ForbiddenError;
 import org.sopt.practice.exception.NotFoundException;
 import org.sopt.practice.repository.PostRepository;
 import org.sopt.practice.service.dto.PostCreateRequest;
@@ -21,8 +23,12 @@ public class PostService {
     private final BlogService blogService;
 
     @Transactional
-    public String createPost(final PostCreateRequest postCreateRequest) {
+    public String createPost(final Long memberId, final PostCreateRequest postCreateRequest) {
         Blog blog = blogService.findBlogById(postCreateRequest.blogId());
+
+        if (!blog.getMember().getId().equals(memberId)) {
+            throw new ForbiddenError(ErrorMessage.ONLY_BLOG_OWNER_CAN_POST);
+        }
 
         Post post = Post.create(postCreateRequest, blog);
         return postRepository.save(post).getId().toString();
