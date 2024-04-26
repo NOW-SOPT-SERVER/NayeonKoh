@@ -11,10 +11,11 @@ public enum ErrorMessage {
     // 404 NOT FOUND
     MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "member not found"),
     BLOG_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "blog not found"),
+    POST_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "post not found"),
     ;
 
-    private int status;
-    private String message;
+    private final int status;
+    private final String message;
 
     ErrorMessage(final int status, final String message) {
         this.status = status;
