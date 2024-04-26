@@ -29,7 +29,7 @@ public class BlogController {
     @PostMapping("/blogs")
     public SuccessResponse<?> createBlog(
             @RequestHeader(name = "memberId") Long memberId, /* Path variable보다 보안 상 안전 */
-            @RequestBody BlogCreateRequest blogCreateRequest,
+            @Valid @RequestBody BlogCreateRequest blogCreateRequest,
             HttpServletResponse response
     ) {
         String createdBlogId = blogService.create(memberId, blogCreateRequest);

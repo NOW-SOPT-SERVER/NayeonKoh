@@ -1,6 +1,7 @@
 package org.sopt.practice.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.sopt.practice.common.SuccessMessage;
@@ -26,7 +27,7 @@ public class MemberController {
 
     @PostMapping
     public SuccessResponse<?> createMember(
-            @RequestBody MemberCreateRequest memberCreateDTO,
+            @Valid @RequestBody MemberCreateRequest memberCreateDTO,
             HttpServletResponse response
     ) {
         String createdMemberId = memberService.createMember(memberCreateDTO);
