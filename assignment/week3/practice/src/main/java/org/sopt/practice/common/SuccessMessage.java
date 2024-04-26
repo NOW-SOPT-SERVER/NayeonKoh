@@ -5,7 +5,11 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 public enum SuccessMessage {
+    /* 200 OK */
+    OK(HttpStatus.OK.value(), "success"),
 
+    /* 201 Created */
+    MEMBER_CREATED_SUCCESS(HttpStatus.CREATED.value(), "created member successfully"),
     BLOG_CREATE_SUCCESS(HttpStatus.CREATED.value(), "created blog successfully"),
     ;
 

@@ -1,10 +1,15 @@
 package org.sopt.practice.controller;
 
+import jakarta.servlet.http.HttpServletResponse;
 import java.net.URI;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.sopt.practice.common.SuccessMessage;
+import org.sopt.practice.common.dto.SuccessResponse;
 import org.sopt.practice.service.MemberService;
 import org.sopt.practice.service.dto.MemberCreateDto;
 import org.sopt.practice.service.dto.MemberFindDto;
+import org.sopt.practice.service.dto.MembersDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,24 +27,37 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping
-    public ResponseEntity<MemberCreateDto> createMember(
-            @RequestBody MemberCreateDto memberCreateDTO
+    public SuccessResponse<?> createMember(
+            @RequestBody MemberCreateDto memberCreateDTO,
+            HttpServletResponse response
     ) {
-        return ResponseEntity.created(URI.create(memberService.createMember(memberCreateDTO))).build();
+        String createdMemberId = memberService.createMember(memberCreateDTO);
+        /*
+         Location header field에 새로운 리소스에 대한 uri 엔드포인트 설정
+         Member-ID field에 생성된 member의 id 설정
+        */
+        response.setHeader("Location", "/api/v1/members/" + createdMemberId);
+        response.setHeader("Member-ID", createdMemberId);
+        return SuccessResponse.of(SuccessMessage.MEMBER_CREATED_SUCCESS, null);
     }
 
     @GetMapping("/{memberId}")
-    public ResponseEntity<MemberFindDto> findMemberById(
+    public SuccessResponse<MemberFindDto> findMemberById(
             @PathVariable final Long memberId
     ) {
-        return ResponseEntity.ok(memberService.getMemberById(memberId));
+        return SuccessResponse.of(SuccessMessage.OK, memberService.getMemberById(memberId));
     }
 
     @DeleteMapping("/{memberId}")
-    public ResponseEntity deleteMemberById(
+    public SuccessResponse<?> deleteMemberById(
             @PathVariable final Long memberId
     ) {
         memberService.deleteMemberById(memberId);
-        return ResponseEntity.noContent().build();
+        return SuccessResponse.of(SuccessMessage.OK, null);
+    }
+
+    @GetMapping
+    public SuccessResponse<List<MembersDto>> getMembers() {
+        return SuccessResponse.of(SuccessMessage.OK, memberService.getMembers());
     }
  }

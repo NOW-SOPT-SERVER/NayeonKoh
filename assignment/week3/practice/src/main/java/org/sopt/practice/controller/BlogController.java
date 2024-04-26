@@ -1,9 +1,10 @@
 package org.sopt.practice.controller;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.sopt.practice.common.SuccessMessage;
-import org.sopt.practice.common.dto.SuccessStatusResponse;
+import org.sopt.practice.common.dto.SuccessResponse;
 import org.sopt.practice.service.dto.BlogTitleUpdateRequest;
 import org.sopt.practice.service.BlogService;
 import org.sopt.practice.service.dto.BlogCreateRequest;
@@ -26,24 +27,27 @@ public class BlogController {
     private final BlogService blogService;
 
     @PostMapping("/blogs")
-    public ResponseEntity<SuccessStatusResponse> createBlog(
+    public SuccessResponse<?> createBlog(
             @RequestHeader(name = "memberId") Long memberId, /* Path variable보다 보안 상 안전 */
-            @RequestBody BlogCreateRequest blogCreateRequest
+            @RequestBody BlogCreateRequest blogCreateRequest,
+            HttpServletResponse response
     ) {
-        return ResponseEntity.status(HttpStatus.CREATED).header(
-                /* create 시 생성된 entity의 identifier를 Location Header로 반환 */
-                "Location",
-                        blogService.create(memberId, blogCreateRequest)
-                )
-                .body(SuccessStatusResponse.of(SuccessMessage.BLOG_CREATE_SUCCESS));
+        String createdBlogId = blogService.create(memberId, blogCreateRequest);
+        /*
+         Location header field에 새로운 리소스에 대한 uri 엔드포인트 설정
+         Blog-ID field에 생성된 blog의 id 설정
+        */
+        response.setHeader("Location", "/api/v1/blogs" + createdBlogId);
+        response.setHeader("Blog-ID", createdBlogId);
+        return SuccessResponse.of(SuccessMessage.BLOG_CREATE_SUCCESS, null);
     }
 
     @PatchMapping("/blogs/{blogId}/title")
-    public ResponseEntity updateBlogTitle(
+    public SuccessResponse<?> updateBlogTitle(
             @PathVariable Long blogId,
             @Valid @RequestBody BlogTitleUpdateRequest blogTitleUpdateRequest
     ) {
         blogService.updateTitle(blogId, blogTitleUpdateRequest);
-        return ResponseEntity.noContent().build();
+        return SuccessResponse.of(SuccessMessage.OK, null);
     }
 }
