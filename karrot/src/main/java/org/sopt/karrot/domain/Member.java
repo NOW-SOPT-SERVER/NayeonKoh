@@ -14,6 +14,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.sopt.karrot.dto.request.MemberCreateDto;
 
 @Entity
@@ -33,6 +35,7 @@ public class Member {
     private Double temperature;
 
     @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Item> soldItems;
 
     @Builder
