@@ -17,6 +17,7 @@ public enum ErrorCode {
 
     // INTERNAL SERVER ERROR
     INTERNAL_SERVER_ERROR(50000, HttpStatus.INTERNAL_SERVER_ERROR, "서버 내부 오류입니다."),
+    INTERNAL_SERVER_ERROR_BEOPJEONGDONG(50001, HttpStatus.INTERNAL_SERVER_ERROR, "법정동 정보를 가져오는 중 오류가 발생했습니다."),
     ;
 
     private final int status;
