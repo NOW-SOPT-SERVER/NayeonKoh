@@ -1,5 +1,6 @@
 package org.sopt.karrot.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.sopt.karrot.dto.request.MemberCreateDto;
 import org.sopt.karrot.dto.common.ResponseDto;
@@ -17,7 +18,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping
-    public ResponseDto<?> createMember(@RequestBody final MemberCreateDto memberCreateDto) {
+    public ResponseDto<?> createMember(@RequestBody @Valid final MemberCreateDto memberCreateDto) {
         memberService.createMember(memberCreateDto);
         return ResponseDto.success(null);
     }
