@@ -1,5 +1,6 @@
 package org.sopt.karrot.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.sopt.karrot.dto.common.ResponseDto;
 import org.sopt.karrot.dto.request.ItemRegisterDto;
@@ -18,7 +19,7 @@ public class ItemController {
 
     /* TODO: 토큰에서 멤버 아이디 가져오기 */
     @PostMapping("/members/{memberId}")
-    public ResponseDto<?> registerItem(@PathVariable final Long memberId, @RequestBody final ItemRegisterDto registerDto) {
+    public ResponseDto<?> registerItem(@PathVariable final Long memberId, @RequestBody @Valid final ItemRegisterDto registerDto) {
         itemService.registerItem(memberId, registerDto);
         return ResponseDto.success(null);
     }

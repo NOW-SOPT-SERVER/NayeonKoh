@@ -3,6 +3,8 @@ package org.sopt.karrot.service;
 import lombok.RequiredArgsConstructor;
 import org.sopt.karrot.domain.Item;
 import org.sopt.karrot.domain.Member;
+import org.sopt.karrot.domain.area.domain.EmdArea;
+import org.sopt.karrot.domain.area.repository.EmdAreaRepository;
 import org.sopt.karrot.dto.request.ItemRegisterDto;
 import org.sopt.karrot.repository.ItemRepository;
 import org.sopt.karrot.repository.MemberRepository;
@@ -14,11 +16,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class ItemService {
     private final ItemRepository itemRepository;
     private final MemberRepository memberRepository;
+    private final EmdAreaRepository emdAreaRepository;
 
     @Transactional
     public void registerItem(final Long memberId, final ItemRegisterDto registerDto) {
         Member seller = memberRepository.findByIdOrThrow(memberId);
-        Item item = Item.from(registerDto, seller);
+        EmdArea location = emdAreaRepository.findByCodeOrThrow(registerDto.locationCode());
+        Item item = Item.from(registerDto, seller, location);
         itemRepository.save(item);
     }
 }
