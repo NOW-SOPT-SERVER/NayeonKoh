@@ -7,6 +7,7 @@ import org.sopt.karrot.domain.Member;
 import org.sopt.karrot.domain.area.domain.EmdArea;
 import org.sopt.karrot.domain.area.repository.EmdAreaRepository;
 import org.sopt.karrot.dto.request.ItemRegisterDto;
+import org.sopt.karrot.dto.response.ItemDto;
 import org.sopt.karrot.dto.response.ItemsDto;
 import org.sopt.karrot.repository.ItemRepository;
 import org.sopt.karrot.repository.MemberRepository;
@@ -31,5 +32,10 @@ public class ItemService {
     @Transactional(readOnly = true)
     public List<ItemsDto> findItemsByLocation(final Long locationId) {
         return ItemsDto.listOf(itemRepository.findByLocationId(locationId));
+    }
+
+    @Transactional(readOnly = true)
+    public ItemDto findItemById(final Long itemId) {
+        return ItemDto.from(itemRepository.findByIdOrThrow(itemId));
     }
 }

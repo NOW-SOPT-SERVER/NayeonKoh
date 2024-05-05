@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.sopt.karrot.dto.common.ResponseDto;
 import org.sopt.karrot.dto.request.ItemRegisterDto;
+import org.sopt.karrot.dto.response.ItemDto;
 import org.sopt.karrot.dto.response.ItemsDto;
 import org.sopt.karrot.service.ItemService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,5 +31,10 @@ public class ItemController {
     @GetMapping("/location/{locationId}")
     public ResponseDto<List<ItemsDto>> getItemsByLocation(@PathVariable(name = "locationId") final Long locationId) {
         return ResponseDto.success(itemService.findItemsByLocation(locationId));
+    }
+
+    @GetMapping("/{itemId}")
+    public ResponseDto<ItemDto> getItem(@PathVariable(name = "itemId") final Long itemId) {
+        return ResponseDto.success(itemService.findItemById(itemId));
     }
 }
