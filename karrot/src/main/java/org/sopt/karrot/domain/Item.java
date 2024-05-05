@@ -10,12 +10,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
 import org.sopt.karrot.domain.area.domain.EmdArea;
 import org.sopt.karrot.domain.type.ItemCategory;
 import org.sopt.karrot.domain.type.ItemStatus;
@@ -24,6 +24,7 @@ import org.sopt.karrot.dto.request.ItemRegisterDto;
 
 @Entity
 @Getter
+@DynamicInsert
 @Table(name = "items")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Item {
@@ -57,13 +58,16 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private ItemStatus status;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "location_code")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "location_id")
     private EmdArea location;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member seller;
+
+    @Column(nullable = false)
+    private Integer likes = 0;
 
     public static Item from(final ItemRegisterDto registerDto, final Member seller, final EmdArea location) {
         return Item.builder()
