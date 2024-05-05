@@ -5,12 +5,14 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.sopt.karrot.dto.common.ResponseDto;
 import org.sopt.karrot.dto.request.ItemRegisterDto;
+import org.sopt.karrot.dto.response.ItemAddLikesDto;
 import org.sopt.karrot.dto.response.ItemDto;
 import org.sopt.karrot.dto.response.ItemsDto;
 import org.sopt.karrot.service.ItemService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,5 +38,10 @@ public class ItemController {
     @GetMapping("/{itemId}")
     public ResponseDto<ItemDto> getItem(@PathVariable(name = "itemId") final Long itemId) {
         return ResponseDto.success(itemService.findItemById(itemId));
+    }
+
+    @PutMapping("/{itemId}")
+    public ResponseDto<ItemAddLikesDto> addItemLikes(@PathVariable(name = "itemId") final Long itemId) {
+        return ResponseDto.success(ItemAddLikesDto.from(itemService.addItemLikes(itemId)));
     }
 }

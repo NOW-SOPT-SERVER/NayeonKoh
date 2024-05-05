@@ -38,4 +38,11 @@ public class ItemService {
     public ItemDto findItemById(final Long itemId) {
         return ItemDto.from(itemRepository.findByIdOrThrow(itemId));
     }
+
+    @Transactional
+    public Integer addItemLikes(final Long itemId) {
+        Item item = itemRepository.findByIdOrThrow(itemId);
+        item.addLikes();
+        return itemRepository.findByIdOrThrow(itemId).getLikes();
+    }
 }

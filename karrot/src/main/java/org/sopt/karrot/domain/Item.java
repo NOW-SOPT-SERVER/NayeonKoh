@@ -69,6 +69,10 @@ public class Item {
     @Column(nullable = false)
     private Integer likes = 0;
 
+    public void addLikes() {
+        this.likes = this.likes + 1;
+    }
+
     public static Item from(final ItemRegisterDto registerDto, final Member seller, final EmdArea location) {
         return Item.builder()
                 .seller(seller)
