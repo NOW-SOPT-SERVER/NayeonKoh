@@ -26,6 +26,6 @@ public record ItemRegisterDto(
         String content,
 
         @NonNull
-        Long locationCode
+        Long locationId
 ) {
 }
