@@ -1,7 +1,10 @@
 package org.sopt.practice.service;
 
+import java.io.IOException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.sopt.practice.common.ErrorMessage;
+import org.sopt.practice.externel.S3Service;
 import org.sopt.practice.service.dto.BlogTitleUpdateRequest;
 import org.sopt.practice.domain.Blog;
 import org.sopt.practice.domain.Member;
@@ -18,14 +21,20 @@ public class BlogService {
     private final BlogRepository blogRepository;
     /* TODO: service -> service 호출 단점? */
     private final MemberService memberService;
+    private final S3Service s3Service;
+
+    private static final String BLOG_S3_UPLOAD_FOLER = "blog/";
 
     @Transactional
-    public String create(final Long memberId, final BlogCreateRequest blogCreateRequest) {
-            Member member = memberService.findMemberById(memberId);
-            Blog blog = blogRepository.save(Blog.create(member, blogCreateRequest));
-
-            /* create 시 identifier 반환 : header 값은 String */
+    public String create(final Long memberId, final BlogCreateRequest createRequest) {
+        Member member = memberService.findMemberById(memberId);
+        try {
+            Blog blog = blogRepository.save(Blog.create(member, createRequest.title(), createRequest.description(),
+                    s3Service.uploadImage(BLOG_S3_UPLOAD_FOLER, createRequest.image())));
             return blog.getId().toString();
+        } catch (RuntimeException | IOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     @Transactional

@@ -7,14 +7,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
-import lombok.Builder;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.sopt.practice.service.dto.BlogCreateRequest;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Blog extends BaseTimeEntity {
 
     @Id
@@ -29,25 +28,29 @@ public class Blog extends BaseTimeEntity {
     @Column(nullable = false, length = 200)
     private String title;
 
-
+    @Column(nullable = false, length = 500)
     private String description;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 
     public void updateTitle(final String title) {
         this.title = title;
     }
 
-    @Builder
-    private Blog(final Member member, final String title, final String description) {
+    private Blog(Member member, String title, String imageUrl, String description) {
         this.member = member;
         this.title = title;
+        this.imageUrl = imageUrl;
         this.description = description;
     }
 
-    public static Blog create(final Member member, final BlogCreateRequest blogCreateRequest) {
-        return Blog.builder()
-                .member(member)
-                .title(blogCreateRequest.title())
-                .description(blogCreateRequest.description())
-                .build();
+    public static Blog create(
+            Member member,
+            String title,
+            String description,
+            String imageUrl
+    ) {
+        return new Blog(member, title, imageUrl, description);
     }
 }

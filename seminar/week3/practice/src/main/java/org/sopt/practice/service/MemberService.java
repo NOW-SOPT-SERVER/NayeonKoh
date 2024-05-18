@@ -2,12 +2,15 @@ package org.sopt.practice.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.sopt.practice.auth.UserAuthentication;
 import org.sopt.practice.common.ErrorMessage;
+import org.sopt.practice.common.jwt.JwtTokenProvider;
 import org.sopt.practice.domain.Member;
 import org.sopt.practice.exception.NotFoundException;
 import org.sopt.practice.repository.MemberRepository;
 import org.sopt.practice.service.dto.MemberCreateDto;
 import org.sopt.practice.service.dto.MemberFindDto;
+import org.sopt.practice.service.dto.UserJoinResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,12 +19,21 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final JwtTokenProvider jwtTokenProvider;
+
 
     @Transactional
-    public String createMember(MemberCreateDto memberCreateDTO) {
+    public UserJoinResponse createMember(
+            MemberCreateDto memberCreate
+    ) {
         Member member = memberRepository.save(
-                Member.create(memberCreateDTO.name(), memberCreateDTO.part(), memberCreateDTO.age()));
-        return member.getId().toString();
+                Member.create(memberCreate.name(), memberCreate.part(), memberCreate.age())
+        );
+        Long memberId = member.getId();
+        String accessToken = jwtTokenProvider.issueAccessToken(
+                UserAuthentication.createUserAuthentication(memberId)
+        );
+        return UserJoinResponse.of(accessToken, memberId.toString());
     }
 
     /* private -> protected로 다른 서비스 레이어에서 호출할 수 있도록 수정 */
