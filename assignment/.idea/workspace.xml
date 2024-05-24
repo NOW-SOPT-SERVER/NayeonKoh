@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e9718cd8-a111-40b1-a5d8-74d0f040878e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/week3/practice/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/PracticeApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/common/ErrorMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/common/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/common/SuccessMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/common/dto/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/common/dto/SuccessStatusResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/config/JpaAuditingConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/controller/BlogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/controller/MemberController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/controller/TestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/controller/dto/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/domain/BaseTimeEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/domain/Blog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/domain/Member.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/domain/Part.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/domain/Post.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/exception/BusinessException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/exception/NotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/repository/BlogRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/repository/MemberRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/service/BlogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/service/MemberService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/service/dto/BlogCreateRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/service/dto/BlogTitleUpdateRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/service/dto/MemberCreateDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/service/dto/MemberFindDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/main/java/org/sopt/practice/service/dto/MemberListDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/test/java/org/sopt/practice/PracticeApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/test/java/org/sopt/practice/controller/BlogControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/test/java/org/sopt/practice/controller/MemberControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/week3/practice/src/test/java/org/sopt/practice/settings/ApiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "nykoh2001"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/NOW-SOPT-SERVER/NayeonKoh.git",
+    "accountId": "a3ce1cb5-a0d1-4518-9a17-9fad581c47ee"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2fcql33FChagTTkM35Bh1tUbFzM" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ACTIVE_CLOUD_PROJECT_ACCOUNT": "nykoh2001@gmail.com",
+    "ACTIVE_CLOUD_PROJECT_ID": "gae-sanchaek",
+    "ACTIVE_CLOUD_PROJECT_NAME": "gae-sanchaek",
+    "ACTIVE_CLOUD_PROJECT_NUMBER": "394210874319",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.google.cloudcode.ide_session_index": "20240426_0002",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e9718cd8-a111-40b1-a5d8-74d0f040878e" name="Changes" comment="" />
+      <created>1714110861737</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1714110861737</updated>
+      <workItem from="1714110863030" duration="442000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
