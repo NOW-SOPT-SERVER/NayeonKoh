@@ -1,6 +1,7 @@
 package org.sopt.karrot.dto.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.annotation.Nullable;
 import org.sopt.karrot.exception.CommonException;
 import org.sopt.karrot.exception.ErrorCode;
@@ -10,9 +11,11 @@ import jakarta.validation.constraints.NotNull;
 public record ResponseDto<T>(
         @JsonIgnore HttpStatus httpStatus,
         @NotNull Boolean success,
-        @NotNull T data,
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        @Nullable T data,
+        @JsonInclude(JsonInclude.Include.NON_NULL)
         @Nullable ExceptionDto error
-        ) {
+) {
 
     public static <T> ResponseDto<T> success(@Nullable final T data) {
         return new ResponseDto<>(HttpStatus.OK, true, data, null);

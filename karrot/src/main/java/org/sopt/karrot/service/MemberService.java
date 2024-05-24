@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberService {
     private final MemberRepository memberRepository;
 
-    @Transactional(readOnly = true)
+    @Transactional
     public void createMember(final MemberCreateDto memberCreateDto) {
         Member member = Member.from(memberCreateDto);
         memberRepository.save(member);

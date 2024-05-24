@@ -15,6 +15,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.sopt.karrot.domain.area.domain.EmdArea;
 import org.sopt.karrot.domain.type.ItemCategory;
 import org.sopt.karrot.domain.type.ItemStatus;
 import org.sopt.karrot.domain.type.TradingMethod;
@@ -22,6 +24,7 @@ import org.sopt.karrot.dto.request.ItemRegisterDto;
 
 @Entity
 @Getter
+@DynamicInsert
 @Table(name = "items")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Item {
@@ -55,15 +58,22 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private ItemStatus status;
 
-    /* TODO: 이후 로케이션 클래스 분리 */
-    @Column(name = "location", nullable = false)
-    private String location;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "location_id")
+    private EmdArea location;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member seller;
 
-    public static Item from(final ItemRegisterDto registerDto, final Member seller) {
+    @Column(nullable = false)
+    private Integer likes = 0;
+
+    public void addLikes() {
+        this.likes = this.likes + 1;
+    }
+
+    public static Item from(final ItemRegisterDto registerDto, final Member seller, final EmdArea location) {
         return Item.builder()
                 .seller(seller)
                 .title(registerDto.title())
@@ -73,12 +83,12 @@ public class Item {
                 .price(registerDto.price())
                 .content(registerDto.content())
                 .status(ItemStatus.SALE)
-                .location(registerDto.location())
+                .location(location)
                 .build();
     }
 
     @Builder
-    public Item(final String title, final TradingMethod tradingMethod, final ItemCategory category, final boolean priceSuggestion, final Integer price, final String content, final String location, final Member seller, final ItemStatus status) {
+    public Item(final String title, final TradingMethod tradingMethod, final ItemCategory category, final boolean priceSuggestion, final Integer price, final String content, final EmdArea location, final Member seller, final ItemStatus status) {
         this.title = title;
         this.tradingMethod = tradingMethod;
         this.category = category;
