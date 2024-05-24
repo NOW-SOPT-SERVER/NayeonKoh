@@ -25,8 +25,8 @@ public class RestClientUtil {
     private String serviceKey;
 
     public List<Map<String, ?>> getArea(final int page) {
-        log.info("send POST request to get area data");
-        log.info("url: {}", url);
+//        log.info("send POST request to get area data");
+//        log.info("url: {}", url);
 
         // total data : 49861
         int perPage = 50;
@@ -40,7 +40,7 @@ public class RestClientUtil {
                 .toEntity(Map.class)
                 .getBody()
                 .get("data");
-        log.info("response: {}", response);
+//        log.info("response: {}", response);
 
         return (List<Map<String, ?>>) response;
     }
