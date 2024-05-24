@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.sopt.practice.service.MemberService;
 import org.sopt.practice.service.dto.MemberCreateDto;
 import org.sopt.practice.service.dto.MemberFindDto;
+import org.sopt.practice.service.dto.UserJoinResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +24,15 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping
-    public ResponseEntity<MemberCreateDto> createMember(
-            @RequestBody MemberCreateDto memberCreateDTO
+    public ResponseEntity<UserJoinResponse> postMember(
+            @RequestBody MemberCreateDto memberCreate
     ) {
-        return ResponseEntity.created(URI.create(memberService.createMember(memberCreateDTO))).build();
+        UserJoinResponse userJoinResponse = memberService.createMember(memberCreate);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .header("Location", userJoinResponse.userId())
+                .body(
+                        userJoinResponse
+                );
     }
 
     @GetMapping("/{memberId}")

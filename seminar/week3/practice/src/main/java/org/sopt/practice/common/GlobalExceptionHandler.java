@@ -4,6 +4,7 @@ import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import org.sopt.practice.common.dto.ErrorResponse;
 import org.sopt.practice.exception.NotFoundException;
+import org.sopt.practice.exception.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -13,6 +14,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(UnauthorizedException.class)
+    protected ResponseEntity<ErrorResponse> handlerUnauthorizedException(UnauthorizedException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(ErrorResponse.of(e.getErrorMessage().getStatus(), e.getErrorMessage().getMessage()));
+    }
 
     @ExceptionHandler(value = {NotFoundException.class})
     protected ResponseEntity<ErrorResponse> handleEntityNotFoundException(final NotFoundException e) {
