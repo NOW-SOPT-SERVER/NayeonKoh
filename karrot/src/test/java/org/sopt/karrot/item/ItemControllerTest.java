@@ -1,6 +1,7 @@
 package org.sopt.karrot.item;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,15 +34,15 @@ public class ItemControllerTest extends MockMVCUtils {
     private final static Long ITEM_ID = 1L;
     private final static Long LOCATION_ID = 1L;
     private final static Item ITEM_RESULT = Item.builder()
-            .title("아이템 제목")
-            .content("아이템 내용")
+            .title("item title")
+            .content("item content")
             .category(ItemCategory.BOOK)
             .tradingMethod(TradingMethod.SELL)
             .status(ItemStatus.SALE)
             .price(10000)
             .priceSuggestion(true)
-            .seller(Member.builder().name("판매자").soldItems(new ArrayList<>()).build())
-            .location(EmdArea.builder().name("서울시 강남구").code(10000L).build())
+            .seller(Member.builder().name("seller").soldItems(new ArrayList<>()).build())
+            .location(EmdArea.builder().name("seoul").code(10000L).build())
             .build();
 
     @BeforeEach
@@ -56,10 +57,18 @@ public class ItemControllerTest extends MockMVCUtils {
                 .thenReturn(ItemDto.from(ITEM_RESULT));
 
         ResultActions resultActions = whenGet(ITEM_BASE_URL + ITEM_BY_ID_URL, ITEM_ID);
+        System.out.println(resultActions.andReturn().getResponse().getContentAsString());
 
         resultActions.andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().json(toJson(ItemDto.from(ITEM_RESULT))));
+                .andExpect(jsonPath("$.data.category").value(ItemCategory.BOOK.name()))
+                .andExpect(jsonPath("$.data.content").value("item content"))
+                .andExpect(jsonPath("$.data.location.name").value("seoul"))
+                .andExpect(jsonPath("$.data.price").value(10000))
+                .andExpect(jsonPath("$.data.priceSuggestion").value(true))
+                .andExpect(jsonPath("$.data.seller.name").value("seller"))
+                .andExpect(jsonPath("$.data.tradingMethod").value(TradingMethod.SELL.name()))
+                .andExpect(jsonPath("$.data.title").value("item title"));
     }
 
     @DisplayName("특정 아이템을 지역(location) 값으로 조회")
