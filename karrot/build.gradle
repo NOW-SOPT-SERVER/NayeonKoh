@@ -32,6 +32,11 @@ dependencies {
     // Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    // Api docs
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind' // 멀티 모듈 설정 시 compileOnly 의존성
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc' // 멀티 모듈 설정 시 apiElements 의존성
+    // asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+
     // Validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
