@@ -22,7 +22,7 @@ public abstract class MockMVCUtils extends ApiDocsAbstract {
         return MockMvcBuilders.standaloneSetup(controller)
                 .setControllerAdvice(new GlobalExceptionHandler())
                 .apply(mockMvcConfigurer())
-                .alwaysDo(MockMvcResultHandlers.log())
+                .alwaysDo(MockMvcResultHandlers.print())
                 .build();
     }
 
