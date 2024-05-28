@@ -37,8 +37,8 @@ public abstract class MockMVCUtils {
         return mockMvc.perform(request);
     }
 
-    protected ResultActions whenGet(String url, Long pathVarable) throws Exception {
-        MockHttpServletRequestBuilder request = RestDocumentationRequestBuilders.get(url, pathVarable)
+    protected ResultActions whenGet(String url, Long pathVariable) throws Exception {
+        MockHttpServletRequestBuilder request = RestDocumentationRequestBuilders.get(url, pathVariable)
                 .accept(MediaType.APPLICATION_JSON);
         return mockMvc.perform(request);
     }
