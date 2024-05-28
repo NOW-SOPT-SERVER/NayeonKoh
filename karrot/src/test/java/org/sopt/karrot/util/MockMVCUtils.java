@@ -2,8 +2,6 @@ package org.sopt.karrot.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.sopt.karrot.apidocs.ApiDocsAbstract;
-import org.sopt.karrot.apidocs.ApiTestConfig;
 import org.sopt.karrot.exception.GlobalExceptionHandler;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
@@ -13,15 +11,14 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-public abstract class MockMVCUtils extends ApiDocsAbstract {
+public abstract class MockMVCUtils {
 
-    private final ObjectMapper objectMapper = new ApiTestConfig().objectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
     protected MockMvc mockMvc;
 
     protected MockMvc mockController(Object controller) {
         return MockMvcBuilders.standaloneSetup(controller)
                 .setControllerAdvice(new GlobalExceptionHandler())
-                .apply(mockMvcConfigurer())
                 .alwaysDo(MockMvcResultHandlers.print())
                 .build();
     }
