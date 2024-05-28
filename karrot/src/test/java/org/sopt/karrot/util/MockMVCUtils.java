@@ -8,6 +8,7 @@ import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -24,7 +25,7 @@ public abstract class MockMVCUtils {
     }
 
     protected ResultActions whenPost(String url, Object body) throws Exception {
-        MockHttpServletRequestBuilder request = RestDocumentationRequestBuilders.post(url)
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post(url)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(toJson(body))
                 .accept(MediaType.APPLICATION_JSON);
@@ -32,13 +33,13 @@ public abstract class MockMVCUtils {
     }
 
     protected ResultActions whenGet(String url) throws Exception {
-        MockHttpServletRequestBuilder request = RestDocumentationRequestBuilders.get(url)
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get(url)
                 .accept(MediaType.APPLICATION_JSON);
         return mockMvc.perform(request);
     }
 
     protected ResultActions whenGet(String url, Long pathVariable) throws Exception {
-        MockHttpServletRequestBuilder request = RestDocumentationRequestBuilders.get(url, pathVariable)
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get(url, pathVariable)
                 .accept(MediaType.APPLICATION_JSON);
         return mockMvc.perform(request);
     }
