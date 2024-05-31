@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class JwtTokenProvider {
     private static final String USER_ID = "userId";
+    private static final String BEARER_PREFIX = "Bearer ";
 
     private static final Long ACCESS_TOKEN_EXPIRATION_TIME = 24 * 60 * 60 * 1000L * 7;
     private static final Long REFRESH_TOKEN_EXPIRATION_TIME = 24 * 60 * 60 * 1000L * 14;
@@ -58,7 +59,7 @@ public class JwtTokenProvider {
 
         claims.put(USER_ID, authentication.getPrincipal());
 
-        return Jwts.builder()
+        return BEARER_PREFIX + Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE) // Header
                 .setClaims(claims) // Claim
                 .signWith(getSigningKey()) // Signature
@@ -71,7 +72,7 @@ public class JwtTokenProvider {
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + tokenExpirationTime));      // 만료 시간
 
-        return Jwts.builder()
+        return BEARER_PREFIX + Jwts.builder()
                 .setClaims(claims)
                 .signWith(getSigningKey())
                 .compact();
