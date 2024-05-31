@@ -1,8 +1,11 @@
 package org.sopt.practice.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public record UserJoinResponse(
         String accessToken,
         String refreshToken,
+        @JsonIgnore
         String userId
 ) {
 
