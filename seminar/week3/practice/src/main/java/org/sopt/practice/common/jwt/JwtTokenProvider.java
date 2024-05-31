@@ -19,8 +19,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class JwtTokenProvider {
     private static final String USER_ID = "userId";
+    private static final String BEARER_PREFIX = "Bearer ";
 
-    private static final Long ACCESS_TOKEN_EXPIRATION_TIME = 24 * 60 * 60 * 1000L * 14;
+    private static final Long ACCESS_TOKEN_EXPIRATION_TIME = 24 * 60 * 60 * 1000L * 7;
+    private static final Long REFRESH_TOKEN_EXPIRATION_TIME = 24 * 60 * 60 * 1000L * 14;
 
     @Value("${jwt.secret}")
     private String JWT_SECRET;
@@ -32,7 +34,11 @@ public class JwtTokenProvider {
     * - authorities: null
     *  */
     public String issueAccessToken(final Authentication authentication) {
-        return generateToken(authentication, ACCESS_TOKEN_EXPIRATION_TIME);
+        return generateAccessToken(authentication, ACCESS_TOKEN_EXPIRATION_TIME);
+    }
+
+    public String issueRefreshToken() {
+        return generateRefreshToken(REFRESH_TOKEN_EXPIRATION_TIME);
     }
 
     /* 토큰 생성 로직
@@ -45,7 +51,7 @@ public class JwtTokenProvider {
     - signWith: 서명 설정 및 암호화
     - compact: 토큰 생성
     */
-    public String generateToken(Authentication authentication, Long tokenExpirationTime) {
+    public String generateAccessToken(Authentication authentication, Long tokenExpirationTime) {
         final Date now = new Date();
         final Claims claims = Jwts.claims()
                 .setIssuedAt(now)
@@ -53,10 +59,22 @@ public class JwtTokenProvider {
 
         claims.put(USER_ID, authentication.getPrincipal());
 
-        return Jwts.builder()
+        return BEARER_PREFIX + Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE) // Header
                 .setClaims(claims) // Claim
                 .signWith(getSigningKey()) // Signature
+                .compact();
+    }
+
+    public String generateRefreshToken(Long tokenExpirationTime) {
+        final Date now = new Date();
+        final Claims claims = Jwts.claims()
+                .setIssuedAt(now)
+                .setExpiration(new Date(now.getTime() + tokenExpirationTime));      // 만료 시간
+
+        return BEARER_PREFIX + Jwts.builder()
+                .setClaims(claims)
+                .signWith(getSigningKey())
                 .compact();
     }
 
