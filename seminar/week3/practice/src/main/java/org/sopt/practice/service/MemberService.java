@@ -33,7 +33,9 @@ public class MemberService {
         String accessToken = jwtTokenProvider.issueAccessToken(
                 UserAuthentication.createUserAuthentication(memberId)
         );
-        return UserJoinResponse.of(accessToken, memberId.toString());
+        String refreshToken = jwtTokenProvider.issueRefreshToken();
+
+        return UserJoinResponse.of(accessToken, refreshToken, memberId.toString());
     }
 
     /* private -> protected로 다른 서비스 레이어에서 호출할 수 있도록 수정 */
